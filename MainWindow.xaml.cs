@@ -38,8 +38,8 @@ namespace FileScramblerV1._0
             // Create Open FileDialog
             rx_dlg = new Microsoft.Win32.OpenFileDialog();
 
-            rx_dlg.DefaultExt = ".cs";
-            rx_dlg.Filter = "Text documents (.cs)|*.cs";
+            //rx_dlg.DefaultExt = ".txt";
+            //rx_dlg.Filter = "Text documents (.txt)|*.txt";
 
             // Display Open File Dialog
             // result is declared implict 'aive hi'
@@ -58,8 +58,8 @@ namespace FileScramblerV1._0
             // Create Open FileDialog
             tx_dlg = new Microsoft.Win32.OpenFileDialog();
 
-            tx_dlg.DefaultExt = ".cs";
-            tx_dlg.Filter = "Text documents (.cs)|*.cs*";
+            //tx_dlg.DefaultExt = ".txt";
+            //tx_dlg.Filter = "Text documents (.txt)|*.txt*";
 
             // Display Open File Dialog
             // result is declared implict 'aive hi'
@@ -68,8 +68,11 @@ namespace FileScramblerV1._0
 
             if(result==true)
             {
-                tx_FileLocation = tx_dlg.FileName;
-                FilenameTextBox2.Text = tx_FileLocation;
+                // Get the filename from dialog box
+                FilenameTextBox2.Text = tx_dlg.FileName;
+
+                // store the user updated filename
+                tx_FileLocation = FilenameTextBox2.Text;
             }
         }
 
@@ -77,45 +80,37 @@ namespace FileScramblerV1._0
         {
             FilenameTextBox2.Clear();
             FilenameTextBox2.Text = FilenameTextBox1.Text;
+            tx_FileLocation = FilenameTextBox2.Text;
 
             BrowseButton2.Visibility = Visibility.Hidden;
         }
 
         private void ConvertButton_Click(object sender, RoutedEventArgs e)
         {
+            // The below 2 lines of code will work too. 
+            // Copy file loc. from textbox when convert button is pressed
+            rx_FileLocation = FilenameTextBox1.Text;
+            tx_FileLocation = FilenameTextBox2.Text;
+
             try
             {
                 string text = System.IO.File.ReadAllText(@rx_FileLocation);
 
                 char[] ar = text.ToCharArray();
-                int countNewLineChar = 0;
-                for (int i = 0;i<ar.Length;i++)
-                {
-                    if (ar[i] == '\n')
-                        countNewLineChar++;
-                }
-
-                Console.WriteLine(countNewLineChar);
-
+                
                 for(int i = 0;i<ar.Length;i++)
                 {
                     if (ar[i] != '\n')
                         ar[i] = (char)((int)ar[i] ^ 2);
+                    else
+                        ar[i] = Environment.NewLine.ToCharArray()[0] ;
                 }
 
                 string newS = new string(ar);
 
                 Console.WriteLine(newS);
 
-                for(int i = 0;i<ar.Length;i++)
-                {
-                    if (ar[i] != '\n')
-                        ar[i] = (char)((int)ar[i] ^ 2);
-                }
-
-                string newSS = new string(ar);
-
-                Console.WriteLine(newSS);
+                System.IO.File.WriteAllText(@tx_FileLocation, newS);
             }
             catch (Exception err)
             {
