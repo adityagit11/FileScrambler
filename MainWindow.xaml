@@ -1,0 +1,44 @@
+﻿<Window x:Class="FileScramblerV1._0.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FileScramblerV1._0"
+        mc:Ignorable="d"
+        Title="FileScrambler V1.0" Height="400" Width="800">
+    <Grid>
+        <Button Content="Convert" Height="32" Width="88" HorizontalAlignment="Left"
+                VerticalAlignment="Top" FontSize="18" Margin="345,275,0,0"
+                Name="ConvertButton" Click="ConvertButton_Click"/>
+
+        <Label Content="File Down-turn Location:" HorizontalAlignment="Left" Margin="40,200,0,0" 
+               VerticalAlignment="Top" FontFamily="Arial" FontSize="16"/>
+
+        <Label Content="File Pick-up Location:" HorizontalAlignment="Left" Margin="40,110,0,0" 
+               VerticalAlignment="Top" FontFamily="Arial" FontSize="16"/>
+
+        <Label Content="File Scrambler " HorizontalAlignment="Left" VerticalAlignment="Top" 
+               FontFamily="Arial Black" Width="170" FontSize="20" Margin="305,28,0,0"/>
+
+        <Label Content="© A product by Aditya Singh Wolvie" HorizontalAlignment="Right"
+               Margin="540,320,0,0" VerticalAlignment="Bottom" FontFamily="Arial"/>
+
+        <TextBox Height="32" HorizontalAlignment="Left" Margin="240,109,0,0" x:Name="FilenameTextBox1"
+            VerticalAlignment="Top" Width="393" FontSize="16" />
+
+        <TextBox Height="32" HorizontalAlignment="Left" Margin="240,200,0,0" x:Name="FilenameTextBox2"
+                 VerticalAlignment="Top" Width="393" FontSize="16" />
+
+        <Button Content="Browse" Height="32" HorizontalAlignment="Left" Margin="650,109,0,0"
+                VerticalAlignment="Top" Width="88" FontSize="18" 
+                Name="BrowserButton1" Click="BrowserButton1_Click" />
+
+        <Button Content="Browse" Height="32" HorizontalAlignment="Left" Margin="650,200,0,0"
+                VerticalAlignment="Top" Width="88" FontSize="18" 
+                Name="BrowseButton2" Click="BrowseButton2_Click" />
+
+        <CheckBox Content="Save @Pick-up Location" HorizontalAlignment="Left" 
+                  Margin="548,257,0,0" VerticalAlignment="Top" FontSize="16" Checked="CheckBox_Checked"/>
+
+    </Grid>
+</Window>
